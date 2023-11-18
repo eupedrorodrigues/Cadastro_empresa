@@ -1,6 +1,13 @@
 import styles from "./Home.module.css";
 import Woman from "../../assets/woman.svg";
 import CardInf from "../../components/CardInf/CardInf";
+import { AiFillCaretRight } from "react-icons/ai";
+import { CiCalculator1 } from "react-icons/ci";
+import { IoPodiumOutline } from "react-icons/io5";
+import { IoPeopleOutline } from "react-icons/io5";
+import { FaRegClipboard } from "react-icons/fa";
+
+
 
 const Home = () => {
   return (
@@ -8,18 +15,19 @@ const Home = () => {
       <div className={styles.body}>
         <aside className={styles.aside}>
           <div>
-            <h4>
+            <h4 className={styles.Start}> 
               <a href="">Início</a>  
+              <AiFillCaretRight className={styles.ColorIcon}/>
             </h4>
           </div>
           <div>
             <h4>Cadastro</h4>
           </div>
           <nav className={styles.navigation}>
-            <a href="">Empresa</a>
-            <a href="">Departamento</a>
-            <a href="">Funcionários</a>
-            <a href="">Tarefas</a>
+            <div className={styles.IconOp}><IoPodiumOutline className={styles.ColorIconOP}/><a href="">Empresa</a></div>
+            <div className={styles.IconOp}><CiCalculator1 className={styles.ColorIconOP}/><a href="">Departamento</a></div>
+            <div className={styles.IconOp}><IoPeopleOutline className={styles.ColorIconOP}/><a href="">Funcionários</a></div>
+            <div className={styles.IconOp}><FaRegClipboard className={styles.ColorIconOP}/><a href="">Tarefas</a></div>
           </nav>
         </aside>
         <div className={styles.content}>
@@ -33,6 +41,12 @@ const Home = () => {
               </div>
             </div>
           </section>
+          <select name="Cadastro" id="Register">
+            <option value="Empresa">Cadastro Empresa</option>
+            <option value="Depar">Cadastro Departamento</option>
+            <option value="">Cadastro Funcionários</option>
+            <option value="">Cadastro Tarefas</option>
+          </select>
           <hr />
           <section className={styles.Information}>
             <CardInf />
@@ -41,6 +55,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+  
   )
 }
 

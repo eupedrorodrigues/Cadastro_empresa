@@ -20,7 +20,7 @@
 }
 
 .Card{
-    width: 80%;
+    width: 60rem;
     height: 11rem;
     display: flex;
     border-radius: 10px; 
@@ -39,7 +39,7 @@
 }
 
 .CardText p{
-    font-size: 0.6em;
+    font-size: 0.8em;
     opacity: 0.5;
 }
 
@@ -68,6 +68,28 @@ aside{
     margin-top: 1rem;
 }
 
+.Start{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ColorIcon{
+    color: #fff;
+    margin-left: 12rem;
+    opacity: 0.8;
+}
+
+.ColorIconOP{
+    color: #fff;
+    opacity: 0.8;
+}
+
+.IconOp{
+    display: flex;
+    align-items: center;
+}
+
 .navigation{
     display: flex;
     flex-direction: column;
@@ -78,13 +100,14 @@ aside{
 }
 
 .navigation a{
-    position: relative;
     font-size: 0.8em;
     color: #fff;
     text-decoration: none;
     opacity: 0.8;
     margin-top: 0.5rem;
     cursor: pointer;
+    margin-left: 0.2rem;
+    padding-bottom: 0.4rem;
 }
 
 .Information{
@@ -92,4 +115,11 @@ aside{
     flex-direction: column;
     align-items: center;
     justify-content: center;    
+}
+
+select{
+    border: none;
+    margin-left: 48rem;
+    outline: none;
+    margin-bottom: 0.4rem;
 }
