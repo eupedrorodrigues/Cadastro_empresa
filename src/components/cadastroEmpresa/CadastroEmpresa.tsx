@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import './CadastroEmpresa.css'
 
-const CadastroDepartamento = () => {
+const CadastroEmpresa = () => {
 
     const {register , handleSubmit , reset} = useForm();
 
@@ -53,4 +53,4 @@ const CadastroDepartamento = () => {
   )
 }
 
-export default CadastroDepartamento
+export default CadastroEmpresa
