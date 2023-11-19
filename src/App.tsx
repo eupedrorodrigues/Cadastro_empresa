@@ -7,7 +7,6 @@ import CadastroEmpresa from './components/cadastroEmpresa/CadastroEmpresa'
 function App() {
   return (
     <div className="App">
-      <CadastroDepartamento/>
       <CadastroEmpresa/>
     </div>
   );
