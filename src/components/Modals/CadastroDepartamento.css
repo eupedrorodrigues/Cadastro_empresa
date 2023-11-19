@@ -41,6 +41,10 @@ textarea{
     background-color: rgba(0, 5, 36, 1);
     width: 1040px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card{
@@ -64,4 +68,5 @@ textarea{
 button{
     border: none;
     font-size: 40px;
+    background-color: rgba(227, 223, 223, 1);
 }
