@@ -21,7 +21,7 @@ const CadastroDepartamento = () => {
         <form onSubmit={handleSubmit(handleSubmitData)}>
 
           <div className="closeModal">
-            <button type='reset' onClick={reset}>x</button>
+            <button type='submit' onClick={reset}>x</button>
           </div>
             <div >
             <input {...register('nomeEmpresa')}  type="text" placeholder="Nome do Empresa" required/>
