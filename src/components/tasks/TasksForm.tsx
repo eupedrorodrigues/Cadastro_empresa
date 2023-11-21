@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import './TasksForm.css'
+import IconX from "../../assets/x.svg"
 
 const TasksForm = () => {
 
@@ -12,47 +13,41 @@ const TasksForm = () => {
 
   return (
     <div>
+      <div className="container">
+        <div className="card">
 
-        <div className="container">
-          <div className="card">
+          <form onSubmit={handleSubmit(handleSubmitData)}>
 
           
-        
-        <form onSubmit={handleSubmit(handleSubmitData)}>
-
-          <div className="closeModal">
-            <button type='reset' onClick={reset}>x</button>
-          </div>
+          <button className="closeModal" onClick={reset}><img src={IconX}/></button>
+          
             <div >
-            <input {...register('tasksName')}  type="text" placeholder="Nome da Tarefa" required/>
+            <input className="inputBox" {...register('tasksName')}  type="text" placeholder="Nome da Tarefa" required/>
             </div>
 
             <div>
-            <input {...register('category')} type="text" placeholder="Categoria" required/>
+            <input className="inputBox" {...register('category')} type="text" placeholder="Categoria" required/>
             </div>
 
             <div>
-            <input {...register('Department')} type="text" placeholder="Departamento" required/>
+            <input className="inputBox" {...register('Department')} type="text" placeholder="Departamento" required/>
             </div>
 
             <div className="date-start">
-            <input type='text' {...register('StartDate')} placeholder="início - DD/MM/AA" required/>
-            <input {...register('priority')} placeholder="prioridade"/>
+            <input className="inputBox1" type='text' {...register('StartDate')} placeholder="início - DD/MM/AA" required/>
+            <input className="inputBox1" {...register('priority')} placeholder="prioridade"/>
             </div>
 
             <div className="date-start">
-            <input type='text' {...register('endDate')} placeholder="término - DD/MM/AA" required/>
-            <input {...register('department')} placeholder="departamento"/>
+            <input className="inputBox1" type='text' {...register('endDate')} placeholder="término - DD/MM/AA" required/>
+            <input className="inputBox1" {...register('department')} placeholder="departamento"/>
             </div>
+      
+            <button placeholder="Enviar" className="submit">Enviar</button>
 
-
-
-            <div>
-            <input	type="submit" className="submit"/>
-            </div>
-        </form>
+          </form>
         </div>
-        </div>
+      </div>
     </div>
   )
 }

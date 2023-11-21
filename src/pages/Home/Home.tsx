@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./Home.module.css";
 import Woman from "../../assets/woman.svg";
 import CardInf from "../../components/CardInf/CardInf";
@@ -6,12 +7,19 @@ import { CiCalculator1 } from "react-icons/ci";
 import { IoPodiumOutline } from "react-icons/io5";
 import { IoPeopleOutline } from "react-icons/io5";
 import { FaRegClipboard } from "react-icons/fa";
+import CadastroEmpresa from "../../components/cadastroEmpresa/CadastroEmpresa";
+import CadastroFuncionario from "../../components/cadastroFuncionario/CadastroFuncionario";
+import CadastroDepartamento from "../../components/Modals/Departamento/CadastroDepartamento";
+import TasksForm from "../../components/tasks/TasksForm";
 
 
 
 const Home = () => {
   return (
     <div>
+      
+      <CadastroFuncionario></CadastroFuncionario>
+      
       <div className={styles.body}>
         <aside className={styles.aside}>
           <div>

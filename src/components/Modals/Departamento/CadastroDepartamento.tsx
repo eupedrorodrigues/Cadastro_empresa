@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form"
 import './CadastroDepartamento.css'
+import IconX from "../../../assets/x.svg"
 
-const CadastroDepartamento = () => {
+export const CadastroDepartamento = () => {
 
     const {register , handleSubmit , reset} = useForm();
 
@@ -20,28 +21,27 @@ const CadastroDepartamento = () => {
         
         <form onSubmit={handleSubmit(handleSubmitData)}>
 
-          <div className="closeModal">
-            <button type='submit' onClick={reset}>x</button>
-          </div>
+          
+            <button className="closeModal" onClick={reset}><img src={IconX}/></button>
+          
             <div >
-            <input {...register('nomeEmpresa')}  type="text" placeholder="Nome do Departamento" required/>
+            <input className="inputBox" {...register('nomeEmpresa')}  type="text" placeholder="Nome do Departamento" required/>
             </div>
 
             <div>
-            <input {...register('responsavel')} type="text" placeholder="responsável" required/>
+            <input className="inputBox" {...register('responsavel')} type="text" placeholder="responsável" required/>
             </div>
 
             <div>
-            <input {...register('cnpj')} type="text" placeholder="CNPJ que ele pertence" required/>
+            <input className="inputBox" {...register('cnpj')} type="text" placeholder="CNPJ que ele pertence" required/>
             </div>
 
             <div>
             <textarea {...register('descricao')} placeholder="descrição" required/>
             </div>
 
-            <div>
-            <input	type="submit" className="submit"/>
-            </div>
+            <button	className="submit">Cadastrar</button>
+            
         </form>
         </div>
         </div>

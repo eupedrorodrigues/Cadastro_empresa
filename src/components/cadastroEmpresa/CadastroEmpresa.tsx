@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form"
 import './CadastroEmpresa.css'
+import IconX from "../../assets/x.svg"
 
-const CadastroEmpresa = () => {
+export const CadastroEmpresa = () => {
 
     const {register , handleSubmit , reset} = useForm();
 
@@ -12,43 +13,37 @@ const CadastroEmpresa = () => {
 
   return (
     <div>
+      <div className="container">
+        <div className="card">
+          <form onSubmit={handleSubmit(handleSubmitData)}>
 
-        <div className="container">
-          <div className="card">
+            <button className="closeModal" onClick={reset}><img src={IconX}/></button>
 
-          
-        
-        <form onSubmit={handleSubmit(handleSubmitData)}>
-
-          <div className="closeModal">
-            <button type='reset' onClick={reset}>x</button>
-          </div>
             <div >
-            <input {...register('nomeEmpresa')}  type="text" placeholder="Nome do Empresa" required/>
+              <input {...register('nomeEmpresa')}  type="text" placeholder="Nome do Empresa" required/>
             </div>
 
             <div>
-            <input {...register('ceo')} type="text" placeholder="Ceo" required/>
+              <input {...register('ceo')} type="text" placeholder="Ceo" required/>
             </div>
 
             <div>
-            <input {...register('cnpj')} type="text" placeholder="CNPJ" required/>
+              <input {...register('cnpj')} type="text" placeholder="CNPJ" required/>
             </div>
 
             <div>
-            <input {...register('nicho')} placeholder="nicho" required/>
+              <input {...register('nicho')} placeholder="nicho" required/>
             </div>
 
             <div>
-            <input type='date' {...register('date')} placeholder="data de criação" required/>
+              <input type='date' {...register('date')} placeholder="data de criação" required/>
             </div>
 
-            <div>
-            <input	type="submit" className="submit"/>
-            </div>
-        </form>
+            <button placeholder="Enviar" className="submit">Enviar</button>
+            
+          </form>
         </div>
-        </div>
+      </div>
     </div>
   )
 }
