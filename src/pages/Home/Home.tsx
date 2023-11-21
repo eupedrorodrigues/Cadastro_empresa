@@ -14,11 +14,38 @@ import TasksForm from "../../components/tasks/TasksForm";
 
 
 
-const Home = () => {
+export const Home = () => {
+
+  const [isTasksFormOpen, setTasksFormState] = useState(false);
+  const toggleTasksForm = () => setTasksFormState(!isTasksFormOpen);
+
+  const [isCadastroDepartamentoOpen, setCadastroDepartamentoState] = useState(false);
+  const toggleCadastroDepartamento = () => setCadastroDepartamentoState(!isCadastroDepartamentoOpen);
+
+  const [isCadastroFuncionarioOpen, setCadastroFuncionarioState] = useState(false);
+  const toggleCadastroFuncionario = () => setCadastroFuncionarioState(!isCadastroFuncionarioOpen);
+
+  const [isCadastroEmpresaOpen, setCadastroEmpresaState] = useState(false);
+  const toggleCadastroEmpresa = () => setCadastroEmpresaState(!isCadastroEmpresaOpen);
+
   return (
     <div>
-      
-      <CadastroFuncionario></CadastroFuncionario>
+      <CadastroEmpresa
+      isOpen={isCadastroEmpresaOpen}
+      onClose={toggleCadastroEmpresa}
+      ></CadastroEmpresa>
+      <CadastroFuncionario
+      isOpen={isCadastroFuncionarioOpen}
+      onClose={toggleCadastroFuncionario}
+      ></CadastroFuncionario>
+      <CadastroDepartamento
+      isOpen={isCadastroDepartamentoOpen}
+      onClose={toggleCadastroDepartamento}
+      ></CadastroDepartamento>
+      <TasksForm
+      isOpen={isTasksFormOpen}
+      onClose={toggleTasksForm}
+      ></TasksForm>
       
       <div className={styles.body}>
         <aside className={styles.aside}>
@@ -32,10 +59,10 @@ const Home = () => {
             <h4>Cadastro</h4>
           </div>
           <nav className={styles.navigation}>
-            <div className={styles.IconOp}><IoPodiumOutline className={styles.ColorIconOP}/><a href="">Empresa</a></div>
-            <div className={styles.IconOp}><CiCalculator1 className={styles.ColorIconOP}/><a href="">Departamento</a></div>
-            <div className={styles.IconOp}><IoPeopleOutline className={styles.ColorIconOP}/><a href="">Funcionários</a></div>
-            <div className={styles.IconOp}><FaRegClipboard className={styles.ColorIconOP}/><a href="">Tarefas</a></div>
+            <div className={styles.IconOp}><IoPodiumOutline className={styles.ColorIconOP}/><button className={styles.btn} onClick={toggleCadastroEmpresa}>Empresa</button></div>
+            <div className={styles.IconOp}><CiCalculator1 className={styles.ColorIconOP}/><button className={styles.btn} onClick={toggleCadastroDepartamento}>Departamento</button></div>
+            <div className={styles.IconOp}><IoPeopleOutline className={styles.ColorIconOP}/><button className={styles.btn} onClick={toggleCadastroFuncionario}>Funcionários</button></div>
+            <div className={styles.IconOp}><FaRegClipboard className={styles.ColorIconOP}/><button className={styles.btn} onClick={toggleTasksForm}>Tarefas</button></div>
           </nav>
         </aside>
         <div className={styles.content}>

@@ -14,9 +14,10 @@ form{
     display: flex;
     flex-direction: column;
     margin-bottom: 100px;
-    width: 100vh;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-
+    padding: 1px;
 }
 
 input{

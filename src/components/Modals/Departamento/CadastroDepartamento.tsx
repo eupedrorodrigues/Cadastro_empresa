@@ -2,16 +2,21 @@ import { useForm } from "react-hook-form"
 import './CadastroDepartamento.css'
 import IconX from "../../../assets/x.svg"
 
-export const CadastroDepartamento = () => {
+interface CadastroDepartamentoProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const CadastroDepartamento: React.FC<CadastroDepartamentoProps> = ( {isOpen, onClose}) => {
 
     const {register , handleSubmit , reset} = useForm();
 
     const handleSubmitData = (data: any) =>{
         console.log('submit' , data)
     }
-    
 
-  return (
+
+  return isOpen ?(
     <div>
 
         <div className="container">
@@ -22,7 +27,7 @@ export const CadastroDepartamento = () => {
         <form onSubmit={handleSubmit(handleSubmitData)}>
 
           
-            <button className="closeModal" onClick={reset}><img src={IconX}/></button>
+            <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
           
             <div >
             <input className="inputBox" {...register('nomeEmpresa')}  type="text" placeholder="Nome do Departamento" required/>
@@ -46,7 +51,7 @@ export const CadastroDepartamento = () => {
         </div>
         </div>
     </div>
-  )
+  ): null;
 }
 
 export default CadastroDepartamento

@@ -2,16 +2,20 @@ import { useForm } from "react-hook-form"
 import './CadastroFuncionario.css'
 import IconX from "../../assets/x.svg"
 
-export const CadastroFuncionario = () => {
+interface CadastroFuncionariosProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpen, onClose}) => {
 
     const {register , handleSubmit , reset} = useForm();
 
     const handleSubmitData = (data: any) =>{
         console.log('submit' , data)
     }
-    
 
-  return (
+    return isOpen ?(
     <div>
 
         <div className="container">
@@ -21,7 +25,7 @@ export const CadastroFuncionario = () => {
         
         <form onSubmit={handleSubmit(handleSubmitData)}>
 
-          <button className="closeModal" onClick={reset}><img src={IconX}/></button>
+          <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
             <div >
             <input className="inputBox" type='email '{...register('email')} placeholder="Email" required/>
             </div>
@@ -52,7 +56,7 @@ export const CadastroFuncionario = () => {
         </div>
         </div>
     </div>
-  )
+  ): null;
 }
 
 export default CadastroFuncionario

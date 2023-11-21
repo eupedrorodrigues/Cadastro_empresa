@@ -2,16 +2,23 @@ import { useForm } from "react-hook-form"
 import './TasksForm.css'
 import IconX from "../../assets/x.svg"
 
-const TasksForm = () => {
+interface TasksFormProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export const TasksForm: React.FC<TasksFormProps> = ( {isOpen, onClose}) => {
 
     const {register , handleSubmit , reset} = useForm();
 
     const handleSubmitData = (data: any) =>{
         console.log('submit' , data)
     }
+
+    
     
 
-  return (
+  return isOpen ?(
     <div>
       <div className="container">
         <div className="card">
@@ -19,7 +26,7 @@ const TasksForm = () => {
           <form onSubmit={handleSubmit(handleSubmitData)}>
 
           
-          <button className="closeModal" onClick={reset}><img src={IconX}/></button>
+          <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
           
             <div >
             <input className="inputBox" {...register('tasksName')}  type="text" placeholder="Nome da Tarefa" required/>
@@ -49,7 +56,7 @@ const TasksForm = () => {
         </div>
       </div>
     </div>
-  )
-}
+  ): null;
+};
 
 export default TasksForm
