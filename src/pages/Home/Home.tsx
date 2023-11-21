@@ -51,7 +51,7 @@ export const Home = () => {
         <aside className={styles.aside}>
           <div>
             <h4 className={styles.Start}> 
-              <a href="">Início</a>  
+              <a href="a">Início</a>  
               <AiFillCaretRight className={styles.ColorIcon}/>
             </h4>
           </div>
@@ -69,7 +69,7 @@ export const Home = () => {
           <section className={styles.Header}>
             <div className={styles.Card}>
               <div className={styles.BlueGradient}></div>
-              <img src={Woman} style={{position: 'relative'}}/>
+              <img src={Woman} alt="woman" style={{position: 'relative'}}/>
               <div className={styles.CardText}>
                 <p>21 de Setembro, 2023</p>
                 <h3>Bem vindo, user!</h3>

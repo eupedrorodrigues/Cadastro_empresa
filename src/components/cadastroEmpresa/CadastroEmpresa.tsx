@@ -9,7 +9,7 @@ interface CadastroEmpresaProps {
 
 export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClose}) => {
 
-    const {register , handleSubmit , reset} = useForm();
+    const {register , handleSubmit} = useForm();
 
     const handleSubmitData = (data: any) =>{
         console.log('submit' , data)

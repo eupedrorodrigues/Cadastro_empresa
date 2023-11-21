@@ -9,7 +9,7 @@ interface CadastroDepartamentoProps {
 
 export const CadastroDepartamento: React.FC<CadastroDepartamentoProps> = ( {isOpen, onClose}) => {
 
-    const {register , handleSubmit , reset} = useForm();
+    const {register , handleSubmit} = useForm();
 
     const handleSubmitData = (data: any) =>{
         console.log('submit' , data)
