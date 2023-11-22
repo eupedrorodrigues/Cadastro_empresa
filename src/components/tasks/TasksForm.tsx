@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import './TasksForm.css';
 import axios from 'axios';
@@ -6,26 +7,40 @@ const TasksForm = () => {
 
     const {register , handleSubmit , reset} = useForm();
 
-    const addTask = async (data: any) => {
+    const addRegisterTasks = async (data: any) => {
       try {
-          const response = await fetch('http://localhost:5002/api/task', {
-              method: 'POST',
-              mode: 'no-cors',
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          });
-  
-          if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-  
-          const responseData = await response.json();
-          console.log("Create Success: ", responseData);
+        const response = await fetch('http://localhost:5002/api/task', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        console.log('Create Success:', responseData);
+        reset();
       } catch (error) {
-          console.error("ERROR: ", error);
+        console.error('ERROR:', error);
+        
       }
-  };
+    };
+   
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          
+        } catch (error) {
+          console.error('ERROR:', error);
+        }
+      };
+   
+      fetchData();
+    }, []); 
   
 
   return (
@@ -36,13 +51,13 @@ const TasksForm = () => {
 
           
         
-        <form onSubmit={handleSubmit(addTask)}>
+        <form onSubmit={handleSubmit(addRegisterTasks)}>
 
           <div className="closeModal">
             <button type='reset' onClick={reset}>x</button>
           </div>
             <div >
-            <input {...register('tasksName')}  type="text" placeholder="Nome da Tarefa" required/>
+            <input {...register('taskName')}  type="text" placeholder="Nome da Tarefa" required/>
             </div>
 
             <div>
@@ -50,16 +65,16 @@ const TasksForm = () => {
             </div>
 
             <div>
-            <input {...register('departmentId')} type="text" placeholder="Departamento" required/>
+            <input {...register('departmentId')}  type="text" placeholder="Departamento ID" required/>
             </div>
 
             <div className="date-start">
-            <input type='text' {...register('StartDate')} placeholder="início - DD/MM/AA" required/>
+            <input type='date' {...register('startDate')}  required/>
             <input {...register('priority')} placeholder="prioridade"/>
             </div>
 
             <div className="date-start">
-            <input type='text' {...register('finishDate')} placeholder="término - DD/MM/AA" required/>
+            <input type='date' {...register('finishDate')} required/>
             <input {...register('status')} placeholder="Status"/>
             </div>
 
