@@ -1,14 +1,32 @@
-import { useForm } from "react-hook-form"
-import './TasksForm.css'
+import { useForm } from "react-hook-form";
+import './TasksForm.css';
+import axios from 'axios';
 
 const TasksForm = () => {
 
     const {register , handleSubmit , reset} = useForm();
 
-    const handleSubmitData = (data: any) =>{
-        console.log('submit' , data)
-    }
-    
+    const addTask = async (data: any) => {
+      try {
+          const response = await fetch('http://localhost:5002/api/task', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          });
+  
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+  
+          const responseData = await response.json();
+          console.log("Create Success: ", responseData);
+      } catch (error) {
+          console.error("ERROR: ", error);
+      }
+  };
+  
 
   return (
     <div>
@@ -18,7 +36,7 @@ const TasksForm = () => {
 
           
         
-        <form onSubmit={handleSubmit(handleSubmitData)}>
+        <form onSubmit={handleSubmit(addTask)}>
 
           <div className="closeModal">
             <button type='reset' onClick={reset}>x</button>
@@ -32,7 +50,7 @@ const TasksForm = () => {
             </div>
 
             <div>
-            <input {...register('Department')} type="text" placeholder="Departamento" required/>
+            <input {...register('departmentId')} type="text" placeholder="Departamento" required/>
             </div>
 
             <div className="date-start">
@@ -41,8 +59,8 @@ const TasksForm = () => {
             </div>
 
             <div className="date-start">
-            <input type='text' {...register('endDate')} placeholder="término - DD/MM/AA" required/>
-            <input {...register('department')} placeholder="departamento"/>
+            <input type='text' {...register('finishDate')} placeholder="término - DD/MM/AA" required/>
+            <input {...register('status')} placeholder="Status"/>
             </div>
 
 
