@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import './CadastroFuncionario.css'
 import IconX from "../../assets/x.svg"
@@ -7,13 +8,46 @@ interface CadastroFuncionariosProps {
   onClose: () => void;
 }
 
-export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpen, onClose}) => {
+export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = () => {
 
-    const {register , handleSubmit} = useForm();
+  const {register , handleSubmit , reset} = useForm();
 
-    const handleSubmitData = (data: any) =>{
-        console.log('submit' , data)
+  const addRegisterEmployee = async (data: any) => {
+    try {
+      const response = await fetch('http://localhost:5002/api/employee', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+ 
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+ 
+      const responseData = await response.json();
+      console.log('Create Success:', responseData);
+      reset();
+    } catch (error) {
+      console.error('ERROR:', error);
+      
     }
+  };
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        
+      } catch (error) {
+        console.error('ERROR:', error);
+      }
+    };
+ 
+    fetchData();
+  }, []); 
+
+    
 
     return isOpen ?(
     <div>
@@ -23,7 +57,7 @@ export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpe
 
           
         
-        <form onSubmit={handleSubmit(handleSubmitData)}>
+        <form onSubmit={handleSubmit(addRegisterEmployee)}>
 
           <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
             <div >

@@ -16,6 +16,9 @@ import TasksForm from "../../components/tasks/TasksForm";
 
 export const Home = () => {
 
+
+  
+
   const [isTasksFormOpen, setTasksFormState] = useState(false);
   const toggleTasksForm = () => setTasksFormState(!isTasksFormOpen);
 
@@ -84,6 +87,7 @@ export const Home = () => {
           </select>
           <hr />
           <section className={styles.Information}>
+            <CardInf />
             <CardInf />
             <CardInf />
           </section>

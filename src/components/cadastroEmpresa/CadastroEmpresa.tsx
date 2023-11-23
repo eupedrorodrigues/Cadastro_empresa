@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import './CadastroEmpresa.css'
 import IconX from "../../assets/x.svg"
@@ -9,23 +10,54 @@ interface CadastroEmpresaProps {
 
 export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClose}) => {
 
-    const {register , handleSubmit} = useForm();
+    const {register , handleSubmit, reset} = useForm();
 
-    const handleSubmitData = (data: any) =>{
-        console.log('submit' , data)
-    }
+    const addRegisterCompany = async (data: any) => {
+      try {
+        const response = await fetch('http://localhost:5002/api/companies', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+   
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+   
+        const responseData = await response.json();
+        console.log('Create Success:', responseData);
+        reset();
+      } catch (error) {
+        console.error('ERROR:', error);
+        
+      }
+    };
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          
+        } catch (error) {
+          console.error('ERROR:', error);
+        }
+      };
+   
+      fetchData();
+    }, []); 
     
 
   return isOpen ?(
     <div>
       <div className="container">
         <div className="card">
-          <form onSubmit={handleSubmit(handleSubmitData)}>
+          <form onSubmit={handleSubmit(addRegisterCompany)}>
 
             <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
 
             <div >
-              <input {...register('nomeEmpresa')}  type="text" placeholder="Nome do Empresa" required/>
+              <input {...register('companiesName')}  type="text" placeholder="Nome do Empresa" required/>
             </div>
 
             <div>
@@ -37,11 +69,11 @@ export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClos
             </div>
 
             <div>
-              <input {...register('nicho')} placeholder="nicho" required/>
+              <input {...register('niche')} placeholder="Nicho" required/>
             </div>
 
             <div>
-              <input type='date' {...register('date')} placeholder="data de criação" required/>
+              <input type='date' {...register('creationDate')} placeholder="data de criação" required/>
             </div>
 
             <button placeholder="Enviar" className="submit">Enviar</button>
