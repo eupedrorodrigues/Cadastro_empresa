@@ -45,7 +45,7 @@ export const Home = () => {
       isOpen={isCadastroDepartamentoOpen}
       onClose={toggleCadastroDepartamento}
       ></CadastroDepartamento>
-      
+
       <TasksForm
       isOpen={isTasksFormOpen}
       onClose={toggleTasksForm}
@@ -81,10 +81,10 @@ export const Home = () => {
             </div>
           </section>
           <select name="Cadastro" id="Register">
-            <option value="Empresa">Cadastro Empresa</option>
-            <option value="Depar">Cadastro Departamento</option>
-            <option value="">Cadastro Funcionários</option>
-            <option value="">Cadastro Tarefas</option>
+            <option value="1">Cadastro Empresa</option>
+            <option value="2">Cadastro Departamento</option>
+            <option value="3">Cadastro Funcionários</option>
+            <option value="4">Cadastro Tarefas</option>
           </select>
           <hr />
           <section className={styles.Information}>
