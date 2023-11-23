@@ -10,7 +10,7 @@ import CadastroFuncionario from './components/cadastroFuncionario/CadastroFuncio
 function App() {
   return (
     <div className="App">
-      <TasksForm/>
+      <CadastroFuncionario/>
     </div>
   );
 }
