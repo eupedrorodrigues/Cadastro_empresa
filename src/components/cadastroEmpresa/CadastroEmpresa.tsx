@@ -56,7 +56,7 @@ export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClos
 
             <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
 
-            <div >
+            <div>
               <input {...register('companiesName')}  type="text" placeholder="Nome do Empresa" required/>
             </div>
 

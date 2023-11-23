@@ -8,7 +8,7 @@ interface CadastroFuncionariosProps {
   onClose: () => void;
 }
 
-export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = () => {
+export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpen, onClose}) => {
 
   const {register , handleSubmit , reset} = useForm();
 

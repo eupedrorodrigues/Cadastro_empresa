@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import Woman from "../../assets/woman.svg";
-import CardInf from "../../components/CardInf/CardInf";
+import CardFunc from "../../components/Cards/CardFunc/CardFunc";
+import Cardinf from "../../components/Cards/CardEmpresa/CardInf";
+import CardDepart from "../../components/Cards/CardDepartamento/CardDepart";
+import CardTask from "../../components/Cards/CardTask/CardTask";
 import { AiFillCaretRight } from "react-icons/ai";
 import { CiCalculator1 } from "react-icons/ci";
 import { IoPodiumOutline } from "react-icons/io5";
@@ -11,12 +14,29 @@ import CadastroEmpresa from "../../components/cadastroEmpresa/CadastroEmpresa";
 import CadastroFuncionario from "../../components/cadastroFuncionario/CadastroFuncionario";
 import CadastroDepartamento from "../../components/Modals/Departamento/CadastroDepartamento";
 import TasksForm from "../../components/tasks/TasksForm";
+import { Card } from "react-ionicons";
 
 
 
 export const Home = () => {
 
+  const [card, setCard] = useState("selectDreamCar");
 
+  const [empresaContentVisible, setEmpresaContentVisible] = useState(false);
+  const [funcionarioContentVisible, setFuncionarioContentVisible] = useState(false);
+  const [taskContentVisible, setTaskContentVisible] = useState(false);
+  const [departamentoContentVisible, setDepartamentoContentVisible] = useState(false);
+
+  useEffect(() => {
+    card === "empresa" ? setEmpresaContentVisible(true) : setEmpresaContentVisible(false);
+    card === "funcionario" ? setFuncionarioContentVisible(true) : setFuncionarioContentVisible(false);
+    card === "task" ? setTaskContentVisible(true) : setTaskContentVisible(false);
+    card === "departamento" ? setDepartamentoContentVisible(true) : setDepartamentoContentVisible(false);
+  }, [card]);
+
+  const handleOnChange = (e:any) => {
+    setCard(e.target.value);
+  };
   
 
   const [isTasksFormOpen, setTasksFormState] = useState(false);
@@ -33,6 +53,7 @@ export const Home = () => {
 
   return (
     <div>
+
       <CadastroEmpresa
       isOpen={isCadastroEmpresaOpen}
       onClose={toggleCadastroEmpresa}
@@ -79,17 +100,19 @@ export const Home = () => {
               </div>
             </div>
           </section>
-          <select name="Cadastro" id="Register">
-            <option value="Empresa">Cadastro Empresa</option>
-            <option value="Depar">Cadastro Departamento</option>
-            <option value="">Cadastro Funcionários</option>
-            <option value="">Cadastro Tarefas</option>
+          <select name="Cadastro" value={card} onChange={handleOnChange} id="Register">
+            <option value="empresa">Cadastro Empresa</option>
+            <option value="departamento">Cadastro Departamento</option>
+            <option value="funcionario">Cadastro Funcionários</option>
+            <option value="task">Cadastro Tarefas</option>
           </select>
           <hr />
           <section className={styles.Information}>
-            <CardInf />
-            <CardInf />
-            <CardInf />
+          
+          {empresaContentVisible && <Cardinf/>}
+          {funcionarioContentVisible && <CardFunc/>}
+          {taskContentVisible && <CardTask/>}
+          {departamentoContentVisible && <CardDepart/>}
           </section>
         </div>
       </div>
