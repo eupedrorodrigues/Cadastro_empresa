@@ -3,50 +3,66 @@
     height: 100vh;
     width: 100vw;
     position: absolute;
+    z-index: 2;
+}
+
+.card{
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 104;
+    background-color: rgba(227, 223, 223, 1);
+    display: flex;
+    width: 80vw;
+    height: 90vh;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 form{
     font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
-    margin-bottom: 100px;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 1px;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
 }
 
 .inputBox{
     font-size: 22px;
     border-radius: 18px;
     border: none;
-    width: 980px;
+    width: 80%;
     height: 40px;
     background-color: rgba(215, 215, 215, 1);
     padding: 30px;
 }
 
-textarea{
-    font-family: 'Inter', sans-serif;
+.inputBox1{
     font-size: 22px;
     border-radius: 18px;
     border: none;
-    width: 980px;
-    height: 120px;
+    width: 47%;
+    height: 40px;
     background-color: rgba(215, 215, 215, 1);
     padding: 30px;
-    overflow: hidden;
-    resize: none;
 }
 
+.inputBox2{
+    font-size: 22px;
+    border-radius: 18px;
+    border: none;
+    width: 30%;
+    height: 40px;
+    background-color: rgba(215, 215, 215, 1);
+    padding: 30px;
+}
 
 .submit{
     background-color: rgba(0, 5, 36, 1);
-    width: 980px;
+    width: 60%;
     height: 60px;
     font-size: 22px;
     font-weight: bold;
@@ -65,28 +81,12 @@ textarea{
     background-color: rgb(8, 0, 56);
 }
 
-.card{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: relative;
-    background-color: rgba(227, 223, 223, 1);
-    display: flex;
-    width: 1300px;
-    height: 900px;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
 .closeModal {
     position: absolute;
     top: 20px;
     right: 20px;
     transition: transform 250ms ease-in-out;
     transform-origin: 50% 50%;
-    border: none;
     background-color: rgba(0, 0, 0, 0);
   }
   
@@ -95,3 +95,14 @@ textarea{
     cursor: pointer;
   }
 
+button{
+    border: none;
+    font-size: 40px;
+    background-color: rgba(227, 223, 223, 1);
+}
+
+.dateStart{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;;
+}

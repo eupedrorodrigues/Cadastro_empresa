@@ -1,5 +1,6 @@
 *{
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .body{
@@ -20,7 +21,7 @@
 }
 
 .Card{
-    width: 60rem;
+    width: 85%;
     height: 11rem;
     display: flex;
     border-radius: 10px; 
@@ -76,7 +77,7 @@ aside{
 
 .ColorIcon{
     color: #fff;
-    margin-left: 12rem;
+    margin-left: 20px;
     opacity: 0.8;
 }
 
@@ -120,7 +121,12 @@ aside{
 
 select{
     border: none;
-    margin-left: 48rem;
+    margin-left: 55vw;
+    margin-right: 5vw;
     outline: none;
     margin-bottom: 0.4rem;
+}
+
+@media only screen and (max-device-width: 991px) {
+    
 }

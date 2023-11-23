@@ -30,18 +30,22 @@ export const Home = () => {
 
   return (
     <div>
+
       <CadastroEmpresa
       isOpen={isCadastroEmpresaOpen}
       onClose={toggleCadastroEmpresa}
       ></CadastroEmpresa>
+
       <CadastroFuncionario
       isOpen={isCadastroFuncionarioOpen}
       onClose={toggleCadastroFuncionario}
       ></CadastroFuncionario>
+
       <CadastroDepartamento
       isOpen={isCadastroDepartamentoOpen}
       onClose={toggleCadastroDepartamento}
       ></CadastroDepartamento>
+      
       <TasksForm
       isOpen={isTasksFormOpen}
       onClose={toggleTasksForm}

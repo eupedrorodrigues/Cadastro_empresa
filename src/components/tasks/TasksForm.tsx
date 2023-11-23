@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import './TasksForm.css'
+import styles from './TasksForm.module.css'
 import IconX from "../../assets/x.svg"
 
 interface TasksFormProps {
@@ -20,37 +20,30 @@ export const TasksForm: React.FC<TasksFormProps> = ( {isOpen, onClose}) => {
 
   return isOpen ?(
     <div>
-      <div className="container">
-        <div className="card">
+      <div className={styles.container}>
+        <div className={styles.card}>
 
           <form onSubmit={handleSubmit(handleSubmitData)}>
-
           
-          <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
-          
-            <div >
-            <input className="inputBox" {...register('tasksName')}  type="text" placeholder="Nome da Tarefa" required/>
+            <button className={styles.closeModal} onClick={onClose}><img src={IconX} alt="fechar"/></button>
+            
+            <input className={styles.inputBox} {...register('tasksName')}  type="text" placeholder="Nome da Tarefa" required/>
+              
+            <input className={styles.inputBox} {...register('category')} type="text" placeholder="Categoria" required/>
+              
+            <input className={styles.inputBox} {...register('Department')} type="text" placeholder="Departamento" required/>
+
+            <div className={styles.dateStart}>
+              <input className={styles.inputBox1} type='text' {...register('StartDate')} placeholder="início - DD/MM/AA" required/>
+              <input className={styles.inputBox1} {...register('priority')} placeholder="prioridade"/>
             </div>
 
-            <div>
-            <input className="inputBox" {...register('category')} type="text" placeholder="Categoria" required/>
-            </div>
-
-            <div>
-            <input className="inputBox" {...register('Department')} type="text" placeholder="Departamento" required/>
-            </div>
-
-            <div className="date-start">
-            <input className="inputBox1" type='text' {...register('StartDate')} placeholder="início - DD/MM/AA" required/>
-            <input className="inputBox1" {...register('priority')} placeholder="prioridade"/>
-            </div>
-
-            <div className="date-start">
-            <input className="inputBox1" type='text' {...register('endDate')} placeholder="término - DD/MM/AA" required/>
-            <input className="inputBox1" {...register('department')} placeholder="departamento"/>
+            <div className={styles.dateStart}>
+              <input className={styles.inputBox1} type='text' {...register('endDate')} placeholder="término - DD/MM/AA" required/>
+              <input className={styles.inputBox1} {...register('department')} placeholder="departamento"/>
             </div>
       
-            <button placeholder="Enviar" className="submit">Enviar</button>
+            <button placeholder="Enviar" className={styles.submit}>Enviar</button>
 
           </form>
         </div>

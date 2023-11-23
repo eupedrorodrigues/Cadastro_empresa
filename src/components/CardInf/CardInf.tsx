@@ -1,6 +1,6 @@
 import styles from "./CardInf.module.css";
 
-const CardInf = () => {
+export const CardInf = () => {
   return (
     <div>
         <div className={styles.CardInf}></div>

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import './CadastroEmpresa.css'
+import styles from './CadastroEmpresa.module.css'
 import IconX from "../../assets/x.svg"
 
 interface CadastroEmpresaProps {
@@ -18,33 +18,24 @@ export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClos
 
   return isOpen ?(
     <div>
-      <div className="container">
-        <div className="card">
+      <div className={styles.container}>
+        <div className={styles.card}>
+
           <form onSubmit={handleSubmit(handleSubmitData)}>
 
-            <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
+            <button className={styles.closeModal} onClick={onClose}><img src={IconX} alt="fechar"/></button>
+            
+            <input className= {styles.inputBox} {...register('nomeEmpresa')}  type="text" placeholder="Nome do Empresa" required/>
 
-            <div >
-              <input {...register('nomeEmpresa')}  type="text" placeholder="Nome do Empresa" required/>
-            </div>
+            <input className= {styles.inputBox} {...register('ceo')} type="text" placeholder="Ceo" required/>
 
-            <div>
-              <input {...register('ceo')} type="text" placeholder="Ceo" required/>
-            </div>
+            <input className= {styles.inputBox} {...register('cnpj')} type="text" placeholder="CNPJ" required/>
 
-            <div>
-              <input {...register('cnpj')} type="text" placeholder="CNPJ" required/>
-            </div>
+            <input className= {styles.inputBox} {...register('nicho')} placeholder="nicho" required/>
 
-            <div>
-              <input {...register('nicho')} placeholder="nicho" required/>
-            </div>
+            <input className= {styles.inputBox} type='date' {...register('date')} placeholder="data de criação" required/>
 
-            <div>
-              <input type='date' {...register('date')} placeholder="data de criação" required/>
-            </div>
-
-            <button placeholder="Enviar" className="submit">Enviar</button>
+            <button placeholder="Enviar" className={styles.submit}>Enviar</button>
             
           </form>
         </div>
