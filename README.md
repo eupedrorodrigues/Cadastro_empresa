@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# Sistema de cadastros
+## :man_office_worker: Descrição do projeto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O **Sistema de cadastro** trate-se de um desafio proposto pela disciplina de Backend framework, onde tinha o intuito de criar uma API e consumir por meio de algum framework no frontend.
 
-## Available Scripts
+![Alt text](image-1.png)
 
-In the project directory, you can run:
 
-### `npm start`
+## :man_office_worker: Configurações e comandos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    Para rodar o projeto na sua máquina você deve ter o node instalado em seu computado
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Clone o repositorio do GitHub que contenha a api
+    
+    ```bash
+    Todo a explicação de como deve ser realizada a instalação da API está descrita no repositório a seguir: https://github.com/IamDaniloP/CadastroEmpresasAPI
+    ```
+* Clone o repositorio do GitHub 
 
-### `npm test`
+    ```bash
+    git clone https://github.com/eupedrorodrigues/Cadastro_empresa.git
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Instale as dependências do projeto
 
-### `npm run build`
+    ```bash
+    npm install
+    ```
+* Como rodar o projeto pelo terminal
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    npm start
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tecnologias
 
-### `npm run eject`
+As tecnologias usadas no projeto foram:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* [React.js](https://react.dev)
+* [Typescript](https://www.typescriptlang.org)
+* [C#](https://learn.microsoft.com/pt-br/dotnet/csharp/)
+* [.NET](https://learn.microsoft.com/pt-br/dotnet/?WT.mc_id=dotnet-35129-website)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
