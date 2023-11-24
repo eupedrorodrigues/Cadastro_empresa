@@ -1,0 +1,126 @@
+*{
+    overflow-x: hidden;
+}
+
+.body{
+    display: flex;
+}
+
+.content{
+    position: relative;
+    width: 80vw;
+}
+
+.Header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.Card{
+    width: 60rem;
+    height: 11rem;
+    display: flex;
+    border-radius: 10px; 
+    background: #000524;
+    overflow: hidden;
+}
+
+.BlueGradient{
+    position: absolute;
+    background: rgba(28, 49, 165, 0.20)
+}
+
+.CardText p,
+.CardText h3{
+    color: #fff;
+}
+
+.CardText p{
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
+.CardText{
+    padding: 1rem;
+    text-align: left;
+}
+
+aside{
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    background: #000524;
+}
+
+.aside h4 a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.aside h4{
+    color: #fff;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.Start{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ColorIcon{
+    color: #fff;
+    margin-left: 12rem;
+    opacity: 0.8;
+}
+
+.ColorIconOP{
+    color: #fff;
+    opacity: 0.8;
+}
+
+.IconOp{
+    display: flex;
+    align-items: center;
+}
+
+.navigation{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-left: 4rem;
+}
+
+.btn{
+    font-size: 1em;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    margin-left: 0.2rem;
+    padding-bottom: 0.4rem;
+    background-color: #000524;
+}
+
+.Information{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    
+}
+
+select{
+    border: none;
+    margin-left: 48rem;
+    outline: none;
+    margin-bottom: 0.4rem;
+}
