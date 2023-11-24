@@ -3,11 +3,14 @@ import { useForm } from 'react-hook-form';
 import styles from './CardInf.module.css';
 
 interface UserData {
-  companiesName: string;
-  creationDate: string;
-  ceo: string;
-  cnpj: string;
-  niche: string;
+  category: string;
+  priority: string;
+  taskName: string;
+  startDate: string;
+  finishDate: string;
+  status: string;
+  departmentId: string; 
+  id: string;
 }
 
 const CardInf: React.FC = () => {
@@ -16,7 +19,7 @@ const CardInf: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/companies?limit=3&offset=0', {
+      const response = await fetch('http://localhost:5002/api/task?limit=3&offset=0', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -37,9 +40,9 @@ const CardInf: React.FC = () => {
     }
   };
 
-  const deleteCard = async (cnpj: string) => {
+  const deleteCard = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5002/api/companies/${cnpj}`, {
+      const response = await fetch(`http://localhost:5002/api/companies/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +70,28 @@ const CardInf: React.FC = () => {
   return (
     <div>
       <div className={styles.CardInf}>
-        <p>teste</p>
+        {userData ? (
+          userData.map((record, index) => (
+            <div key={index} className={styles.BodyCard}>
+              <div className={styles.Infesq}>
+                <p>Categoria: {record.category}</p>
+                <p>Prioridade: {record.priority}</p>
+                <p>Nome da tarefa: {record.taskName}</p>
+                <p>Data de Início: {record.startDate}</p>
+              </div>
+              <div className={styles.Infdir}>
+                <p>Data de término: {record.finishDate}</p>
+                <p>Status: {record.status}</p>
+                <p>Id do departamento: {record.status}</p>
+              </div>
+              <button className={styles.button} onClick={() => deleteCard(record.id)}>Deletar</button>
+            </div>
+          ))
+        ) : (
+          <p style={{ display: 'flex', justifyContent: 'center', paddingTop: '5%' }}>
+            Carregando dados do usuário...
+          </p>
+        )}
       </div>
     </div>
   );

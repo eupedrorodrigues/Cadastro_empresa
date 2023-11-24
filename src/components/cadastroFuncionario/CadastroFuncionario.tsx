@@ -61,29 +61,31 @@ export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpe
 
           <button className="closeModal" onClick={onClose}><img src={IconX} alt="fechar"/></button>
             <div >
-            <input className="inputBox" type='email '{...register('email')} placeholder="Email" required/>
+              <input className="inputBox" type='text'{...register('nomeEmployee')} placeholder="Nome do funcionário" required/>
+            </div>
+
+            <div >
+              <input className="inputBox" type='email '{...register('email')} placeholder="Email" required/>
             </div>
 
             <div>
-            <input className="inputBox" {...register('role')} type="text" placeholder="Cargo" required/>
+              <input className="inputBox" {...register('role')} type="text" placeholder="Cargo" required/>
             </div>
 
             <div>
-            <input className="inputBox" {...register('Department')} type="text" placeholder="Departamento" required/>
+              <input className="inputBox" {...register('departmentId')} type="text" placeholder="Departamento" required/>
             </div>
 
             <div className="date-start">
-            <input className="inputBox2" type='text' {...register('Birthday')} placeholder="Nascimento - DD/MM/AA" required/>
-            <input className="inputBox2" {...register('cnpj')} placeholder="CNPJ"/>
-            <input className="inputBox2" {...register('CPF')} placeholder="CPF"/>
+              <input className="inputBox2" type='date' {...register('birthDate')} placeholder="Nascimento - DD/MM/AA" required/>
+              <input className="inputBox2" {...register('companiesCNPJ')} placeholder="CNPJ"/>
+              <input className="inputBox2" {...register('cpf')} placeholder="CPF"/>
             </div>
 
             <div className="date-start">
-            <input className="inputBox1" type='text' {...register('department')} placeholder="Departamento" required/>
-            <input className="inputBox1" {...register('admission')} placeholder="Admissão"/>
+              <input className="inputBox1" {...register('hireDate')} type='date' placeholder="Admissão"/>
+              <input className="inputBox1" {...register('phoneNumber')} type='text' placeholder="Telefone"/>
             </div>
-
-
 
             <button placeholder="Enviar" className="submit">Enviar</button>
         </form>

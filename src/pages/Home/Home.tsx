@@ -12,7 +12,7 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { FaRegClipboard } from "react-icons/fa";
 import CadastroEmpresa from "../../components/cadastroEmpresa/CadastroEmpresa";
 import CadastroFuncionario from "../../components/cadastroFuncionario/CadastroFuncionario";
-import CadastroDepartamento from "../../components/Modals/Departamento/CadastroDepartamento";
+import CadastroDepartamento from "../../components/cadastroDepartamento/cadastroDepartamento";
 import TasksForm from "../../components/tasks/TasksForm";
 import { Card } from "react-ionicons";
 

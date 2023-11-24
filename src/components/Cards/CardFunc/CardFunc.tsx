@@ -3,11 +3,16 @@ import { useForm } from 'react-hook-form';
 import styles from './CardInf.module.css';
 
 interface UserData {
-  companiesName: string;
-  creationDate: string;
-  ceo: string;
-  cnpj: string;
-  niche: string;
+  nomeEmployee: string;
+  birthDate: string;
+  cpf: string;
+  phoneNumber: string;
+  email: string;
+  role: string;
+  hireDate: string;
+  companiesCNPJ: string;
+  departmentId: string;
+  id: string;
 }
 
 const CardInf: React.FC = () => {
@@ -16,7 +21,7 @@ const CardInf: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/companies?limit=3&offset=0', {
+      const response = await fetch('http://localhost:5002/api/employee?limit=3&offset=0', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -37,9 +42,9 @@ const CardInf: React.FC = () => {
     }
   };
 
-  const deleteCard = async (cnpj: string) => {
+  const deleteCard = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5002/api/companies/${cnpj}`, {
+      const response = await fetch(`http://localhost:5002/api/employee/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +77,30 @@ const CardInf: React.FC = () => {
   return (
     <div>
       <div className={styles.CardInf}>
-        <p>teste</p>
+        {userData ? (
+          userData.map((record, index) => (
+            <div key={index} className={styles.BodyCard}>
+              <div className={styles.Infesq}>
+                <p>Nome do Funcionário: {record.nomeEmployee}</p>
+                <p>Data de aniversário: {record.birthDate}</p>
+                <p>Cargo: {record.role}</p>
+                <p>CPF: {record.cpf}</p>
+                <p>Email: {record.email}</p>
+              </div>
+              <div className={styles.Infdir}>
+                <p>CNPJ da empresa: {record.companiesCNPJ}</p>
+                <p>Data de admissão: {record.hireDate}</p>
+                <p>Telefone: {record.phoneNumber}</p>
+                <p>ID do departamento: {record.departmentId}</p>
+              </div>
+              <button className={styles.button} onClick={() => deleteCard(record.id)}>Deletar</button>
+            </div>
+          ))
+        ) : (
+          <p style={{ display: 'flex', justifyContent: 'center', paddingTop: '5%' }}>
+            Carregando dados do usuário...
+          </p>
+        )}
       </div>
     </div>
   );

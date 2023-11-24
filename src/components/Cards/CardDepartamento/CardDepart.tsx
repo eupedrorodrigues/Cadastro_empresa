@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import styles from './CardInf.module.css';
 
 interface UserData {
-  companiesName: string;
-  creationDate: string;
-  ceo: string;
-  cnpj: string;
-  niche: string;
+  departmentName: string;
+  headOfTheDepartment: string;
+  companiesCnpj: string;
+  departmentDescription: string;
+  id: string;
 }
 
 const CardInf: React.FC = () => {
@@ -16,7 +16,7 @@ const CardInf: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/companies?limit=3&offset=0', {
+      const response = await fetch('http://localhost:5002/api/department?limit=3&offset=0', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -37,9 +37,9 @@ const CardInf: React.FC = () => {
     }
   };
 
-  const deleteCard = async (cnpj: string) => {
+  const deleteCard = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:5002/api/companies/${cnpj}`, {
+      const response = await fetch(`http://localhost:5002/api/department/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,24 @@ const CardInf: React.FC = () => {
   return (
     <div>
       <div className={styles.CardInf}>
-        <p>teste</p>
+        {userData ? (
+          userData.map((record, index) => (
+            <div key={index} className={styles.BodyCard}>
+              <div className={styles.Infesq}>
+                <p>Nome do departamento: {record.departmentName}</p>
+                <p>Responsável: {record.headOfTheDepartment}</p>
+              </div>
+              <div className={styles.Infdir}>
+                <p>Descrição: {record.departmentDescription}</p>
+              </div>
+              <button className={styles.button} onClick={() => deleteCard(record.id)}>Deletar</button>
+            </div>
+          ))
+        ) : (
+          <p style={{ display: 'flex', justifyContent: 'center', paddingTop: '5%' }}>
+            Carregando dados do usuário...
+          </p>
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 104;
+    z-index: 2;
 }
 
 form{
@@ -20,7 +20,7 @@ form{
     padding: 1px;
 }
 
-.inputBox{
+input{
     font-size: 22px;
     border-radius: 18px;
     border: none;
@@ -29,20 +29,6 @@ form{
     background-color: rgba(215, 215, 215, 1);
     padding: 30px;
 }
-
-textarea{
-    font-family: 'Inter', sans-serif;
-    font-size: 22px;
-    border-radius: 18px;
-    border: none;
-    width: 980px;
-    height: 120px;
-    background-color: rgba(215, 215, 215, 1);
-    padding: 30px;
-    overflow: hidden;
-    resize: none;
-}
-
 
 .submit{
     background-color: rgba(0, 5, 36, 1);
@@ -55,6 +41,7 @@ textarea{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .submit:hover{
@@ -86,7 +73,6 @@ textarea{
     right: 20px;
     transition: transform 250ms ease-in-out;
     transform-origin: 50% 50%;
-    border: none;
     background-color: rgba(0, 0, 0, 0);
   }
   
@@ -95,3 +81,8 @@ textarea{
     cursor: pointer;
   }
 
+button{
+    border: none;
+    font-size: 40px;
+    background-color: rgba(227, 223, 223, 1);
+}
