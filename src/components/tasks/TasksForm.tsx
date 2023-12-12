@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import './TasksForm.css';
 import IconX from "../../assets/x.svg";
 
@@ -8,11 +8,27 @@ interface TasksFormProps {
   onClose: () => void;
 }
 
+interface TaskData{
+  taskName: string;
+  category: string; 
+  departmentId: string;
+  startDate: string;
+  priority: string;
+  finishDate: string;
+  status: string;
+}
+
+interface ApiResponse{
+  success: boolean;
+  data: any;
+  message: string;
+}
+
 export const TasksForm: React.FC<TasksFormProps> = ( {isOpen, onClose}) => {
 
-    const {register , handleSubmit, reset} = useForm();
+    const {register , handleSubmit, reset} = useForm<TaskData>();
 
-    const addRegisterTasks = async (data: any) => {
+    const addRegisterTasks : SubmitHandler<TaskData> = async (data) => {
       try {
         const response = await fetch('http://localhost:5002/api/task', {
           method: 'POST',
@@ -25,13 +41,16 @@ export const TasksForm: React.FC<TasksFormProps> = ( {isOpen, onClose}) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-   
-        const responseData = await response.json();
-        console.log('Create Success:', responseData);
-        reset();
-      } catch (error) {
+
+        try{
+          const responseData : ApiResponse = await response.json();
+          console.log(responseData);
+        }catch(Error){
+          console.log('Tarefas criada com sucesso:')
+          onClose();
+        }
+      }catch (error) {
         console.error('ERROR:', error);
-        
       }
     };
 

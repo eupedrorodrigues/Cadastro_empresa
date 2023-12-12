@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import './CadastroEmpresa.css'
 import IconX from "../../assets/x.svg"
 
@@ -8,11 +8,25 @@ interface CadastroEmpresaProps {
   onClose: () => void;
 }
 
-export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClose}) => {
+interface CompanyData{
+  companiesName: string;
+  ceo: string;
+  cnpj: string;
+  niche: string;
+  creationDate: string;
+}
 
-    const {register , handleSubmit, reset} = useForm();
+interface ApiResponse{
+  success: boolean;
+  data: any;
+  message: string;
+}
 
-    const addRegisterCompany = async (data: any) => {
+export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ({isOpen, onClose}) => {
+
+    const {register , handleSubmit, reset} = useForm<CompanyData>();
+
+    const addRegisterCompany: SubmitHandler<CompanyData> = async (data) => {
       try {
         const response = await fetch('http://localhost:5002/api/companies', {
           method: 'POST',
@@ -25,13 +39,16 @@ export const CadastroEmpresa: React.FC<CadastroEmpresaProps> = ( {isOpen, onClos
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-   
-        const responseData = await response.json();
-        console.log('Create Success:', responseData);
-        reset();
+
+        try {
+          const responseData : ApiResponse = await response.json();
+          console.log(responseData);
+        } catch (Error) {
+          console.log('Empresa criada com sucesso:')
+          onClose();
+        }
       } catch (error) {
-        console.error('ERROR:', error);
-        
+        console.error('ERROR DE:', error);
       }
     };
 

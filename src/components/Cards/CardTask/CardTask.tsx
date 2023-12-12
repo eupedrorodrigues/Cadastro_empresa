@@ -19,7 +19,7 @@ const CardInf: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/task?limit=3&offset=0', {
+      const response = await fetch('http://localhost:5002/api/task', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

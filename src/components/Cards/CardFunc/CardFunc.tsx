@@ -2,16 +2,24 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './CardInf.module.css';
 
+interface CompaniesData {
+  cnpj: string;
+}
+
+interface DepartmentData {
+  id: number;
+}
+
 interface UserData {
-  nomeEmployee: string;
+  nameEmployee: string;
   birthDate: string;
   cpf: string;
   phoneNumber: string;
   email: string;
-  role: string;
+  roleName: string;
   hireDate: string;
-  companiesCNPJ: string;
-  departmentId: string;
+  companies: CompaniesData;
+  department: DepartmentData;
   id: string;
 }
 
@@ -21,7 +29,7 @@ const CardInf: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/employee?limit=3&offset=0', {
+      const response = await fetch('http://localhost:5002/api/employee', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -35,8 +43,10 @@ const CardInf: React.FC = () => {
       const responseData: UserData[] = await response.json();
       console.log('Data retrieved successfully:', responseData);
 
-      const lastTwoRecords = responseData.slice(-3);
-      setUserData(lastTwoRecords);
+      if (responseData.length > 0) {
+        const lastThreeRecords = responseData.slice(-3);
+        setUserData(lastThreeRecords);
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -69,11 +79,6 @@ const CardInf: React.FC = () => {
     }
   }, [userData]);
 
-
-
-
-
-
   return (
     <div>
       <div className={styles.CardInf}>
@@ -81,19 +86,21 @@ const CardInf: React.FC = () => {
           userData.map((record, index) => (
             <div key={index} className={styles.BodyCard}>
               <div className={styles.Infesq}>
-                <p>Nome do Funcionário: {record.nomeEmployee}</p>
+                <p>Nome do Funcionário: {record.nameEmployee}</p>
                 <p>Data de aniversário: {record.birthDate}</p>
-                <p>Cargo: {record.role}</p>
+                <p>Cargo: {record.roleName}</p>
                 <p>CPF: {record.cpf}</p>
                 <p>Email: {record.email}</p>
               </div>
               <div className={styles.Infdir}>
-                <p>CNPJ da empresa: {record.companiesCNPJ}</p>
+                <p>CNPJ da empresa: {record.companies.cnpj}</p>
                 <p>Data de admissão: {record.hireDate}</p>
                 <p>Telefone: {record.phoneNumber}</p>
-                <p>ID do departamento: {record.departmentId}</p>
+                <p>ID do departamento: {record.department.id}</p>
               </div>
-              <button className={styles.button} onClick={() => deleteCard(record.id)}>Deletar</button>
+              <button className={styles.button} onClick={() => deleteCard(record.id)}>
+                Deletar
+              </button>
             </div>
           ))
         ) : (

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import './CadastroFuncionario.css'
 import IconX from "../../assets/x.svg"
 
@@ -8,11 +8,29 @@ interface CadastroFuncionariosProps {
   onClose: () => void;
 }
 
-export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpen, onClose}) => {
+interface EmployeeData{
+  nomeEmployee: string;
+  email: string;
+  role: string;
+  departmentId: string;
+  birthDate: string;
+  companiesCNPJ: string;
+  cpf: string;
+  hireDate: string;
+  phoneNumber: string;
+}
 
-  const {register , handleSubmit , reset} = useForm();
+interface ApiResponse{
+  success: boolean;
+  data: any;
+  message: string;
+}
 
-  const addRegisterEmployee = async (data: any) => {
+export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ({isOpen, onClose}) => {
+
+  const {register , handleSubmit , reset} = useForm<EmployeeData>();
+
+  const addRegisterEmployee : SubmitHandler<EmployeeData>  = async (data) => {
     try {
       const response = await fetch('http://localhost:5002/api/employee', {
         method: 'POST',
@@ -25,10 +43,15 @@ export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpe
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
- 
-      const responseData = await response.json();
-      console.log('Create Success:', responseData);
-      reset();
+
+      try{
+        const responseData : ApiResponse = await response.json();
+        console.log(responseData);
+      }catch(Error){
+        console.log('Empresa criada com sucesso:')
+        onClose();
+      }
+      
     } catch (error) {
       console.error('ERROR:', error);
       
@@ -73,7 +96,7 @@ export const CadastroFuncionario: React.FC<CadastroFuncionariosProps> = ( {isOpe
             </div>
 
             <div>
-              <input className="inputBox" {...register('departmentId')} type="text" placeholder="Departamento" required/>
+              <input className="inputBox" {...register('departmentId')} type="text" placeholder="Id do Departamento" required/>
             </div>
 
             <div className="date-start">

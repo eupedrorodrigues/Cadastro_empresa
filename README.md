@@ -3,7 +3,7 @@
 
 O **Sistema de cadastro** trate-se de um desafio proposto pela disciplina de Backend framework, onde tinha o intuito de criar uma API e consumir por meio de algum framework no frontend.
 
-![Alt text](image-1.png)
+![Alt text](public/image-1.png)
 
 
 ## :man_office_worker: Configurações e comandos

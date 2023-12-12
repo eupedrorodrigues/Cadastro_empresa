@@ -16,7 +16,7 @@ const CardInf: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/department?limit=3&offset=0', {
+      const response = await fetch('http://localhost:5002/api/department', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -63,10 +63,6 @@ const CardInf: React.FC = () => {
       fetchData();
     }
   }, [userData]);
-
-
-
-
 
 
   return (
