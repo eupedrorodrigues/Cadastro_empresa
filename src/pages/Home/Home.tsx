@@ -20,7 +20,7 @@ import { Card } from "react-ionicons";
 
 export const Home = () => {
 
-  const [card, setCard] = useState("selectDreamCar");
+  const [card, setCard] = useState("empresa");
 
   const [empresaContentVisible, setEmpresaContentVisible] = useState(false);
   const [funcionarioContentVisible, setFuncionarioContentVisible] = useState(false);

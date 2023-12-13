@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import styles from './CardInf.module.css';
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import styles from "./CardInf.module.css";
+import EditCompanyModal from './EditEmpresa';
 
 interface UserData {
   companiesName: string;
@@ -13,48 +14,63 @@ interface UserData {
 const CardInf: React.FC = () => {
   const { register, handleSubmit, reset } = useForm();
   const [userData, setUserData] = useState<UserData[] | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:5002/api/companies?limit=3&offset=0', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        "http://localhost:5002/api/companies?limit=3&offset=0",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const responseData: UserData[] = await response.json();
-      console.log('Data retrieved successfully:', responseData);
+      console.log("Data retrieved successfully:", responseData);
 
       const lastTwoRecords = responseData.slice(-3);
       setUserData(lastTwoRecords);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
   const deleteCard = async (cnpj: string) => {
     try {
-      const response = await fetch(`http://localhost:5002/api/companies/${cnpj}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5002/api/companies/${cnpj}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      console.log('Card deleted successfully');
+      console.log("Card deleted successfully");
 
       fetchData();
     } catch (error) {
-      console.error('Error deleting card:', error);
+      console.error("Error deleting card:", error);
     }
   };
 
@@ -79,11 +95,37 @@ const CardInf: React.FC = () => {
                 <p>CNPJ: {record.cnpj}</p>
                 <p>Data de Criação: {record.creationDate}</p>
               </div>
-              <button className={styles.button} onClick={() => deleteCard(record.cnpj)}>Deletar</button>
+
+              <button className={styles.buttonEdit} onClick={handleOpenModal}>Editar</button>
+              {isModalOpen && (
+                <EditCompanyModal
+                  companyId= {record.cnpj}
+                  initialValues={{
+                    companiesName: `${record.companiesName}`,
+                    ceo: `${record.ceo}`,
+                    cnpj: `${record.cnpj}`,
+                    creationDate: `${record.creationDate}`,
+                    niche: `${record.niche}`,
+                  }}
+                  onClose={handleCloseModal}
+                />
+              )}
+              <button
+                className={styles.button}
+                onClick={() => deleteCard(record.cnpj)}
+              >
+                Deletar
+              </button>
             </div>
           ))
         ) : (
-          <p style={{ display: 'flex', justifyContent: 'center', paddingTop: '5%' }}>
+          <p
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "5%",
+            }}
+          >
             Carregando dados do usuário...
           </p>
         )}

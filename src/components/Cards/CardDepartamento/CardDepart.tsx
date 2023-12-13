@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './CardInf.module.css';
+import EditDepartmentModal from './EditDepart';
 
 interface UserData {
   departmentName: string;
@@ -10,9 +11,23 @@ interface UserData {
   id: string;
 }
 
+interface DepartmentData {
+  departmentName: string;
+  headOfTheDepartment: string;
+  departmentDescription: string;
+  companiesCnpj: string;
+}
+
+interface EditDepartmentModalProps {
+  departmentId: string;
+  initialValues: DepartmentData;
+  onClose: () => void;
+}
+
 const CardInf: React.FC = () => {
   const { register, handleSubmit, reset } = useForm();
   const [userData, setUserData] = useState<UserData[] | null>(null);
+  const [isDepartmentModalOpen, setDepartmentModalOpen] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -64,6 +79,13 @@ const CardInf: React.FC = () => {
     }
   }, [userData]);
 
+  const handleOpenDepartmentModal = () => {
+    setDepartmentModalOpen(true);
+  };
+
+  const handleCloseDepartmentModal = () => {
+    setDepartmentModalOpen(false);
+  };
 
   return (
     <div>
@@ -78,14 +100,29 @@ const CardInf: React.FC = () => {
               <div className={styles.Infdir}>
                 <p>Descrição: {record.departmentDescription}</p>
               </div>
+              <button className={styles.buttonEdit} onClick={handleOpenDepartmentModal}>Editar</button>
+              {isDepartmentModalOpen && (
+                <EditDepartmentModal
+                  departmentId={record.id}
+                  initialValues={{
+                    departmentName: `${record.departmentName}`,
+                    headOfTheDepartment: `${record.headOfTheDepartment}`,
+                    departmentDescription: `${record.departmentDescription}`,
+                    companiesCnpj: `${record.companiesCnpj}`,
+                  }}
+                  onClose={handleCloseDepartmentModal}
+                />
+              )}
               <button className={styles.button} onClick={() => deleteCard(record.id)}>Deletar</button>
             </div>
+
           ))
         ) : (
           <p style={{ display: 'flex', justifyContent: 'center', paddingTop: '5%' }}>
             Carregando dados do usuário...
           </p>
         )}
+
       </div>
     </div>
   );

@@ -33,3 +33,50 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.modalBox{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonEdit{
+    background: green;
+    color: #fff;
+    font-size: 1rem;
+    margin-right: 2rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonModal{
+    background: rgb(63, 63, 196);
+    color: #fff;
+    font-size: 1rem;
+    margin-right: 2rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ModalForm{
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px 0px;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    justify-content: left;
+    
+}
